@@ -1,0 +1,11 @@
+<nav aria-label="breadcrumb">
+	<h2>Task Details</h2>
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="/home">Home</a></li>
+		<li class="breadcrumb-item"><a href="/tasks">Tasks</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Task Details</li>
+	</ol>
+</nav>
+<hr class="mt-4" style="color: #cbcbcb;">
+<br>
+@livewire('task-details', ['task_id' => $task_id])
