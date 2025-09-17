@@ -9,7 +9,7 @@
 
         <div class="mb-3">
             <label>Project <font color="red">*</font></label>
-            <select wire:model="project_id" class="form-control">
+            <select wire:model="project_id" class="form-select">
                 <option value="">-- Select Project --</option>
                 @foreach($projects as $project)
                     <option value="{{ $project->id }}">{{ $project->name }}</option>
@@ -19,8 +19,8 @@
         </div>
 
         <div class="mb-3">
-            <label>Task type <font color="red">*</font></label>
-            <select wire:model="task_type" class="form-control">
+            <label>Issue type <font color="red">*</font></label>
+            <select wire:model="task_type" class="form-select">
                 <option value="">-- Select Task Type --</option>
                 <option value="bug">Bug</option>
                 <option value="feature">Feature</option>
@@ -45,7 +45,7 @@
 
         <div class="mb-3">
             <label>Priority <font color="red">*</font></label>
-            <select wire:model="priority" class="form-control">
+            <select wire:model="priority" class="form-select">
                 <option value=0>Low</option>
                 <option value=1>Medium</option>
                 <option value=2>High</option>
@@ -55,7 +55,7 @@
         </div>
 
         <button type="submit" wire:loading.attr="disabled" class="btn custom-btn px-md-5">
-            Create Task
+            Create
         </button>
     </form>
 </div>

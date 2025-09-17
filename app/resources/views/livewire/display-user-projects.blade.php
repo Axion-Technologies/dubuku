@@ -13,8 +13,7 @@
                 <tr>
 
                     <td>{{ $project->name }}</td>
-                    <td><a href="/projects/tasks/{{ $project->id }}">View Tasks</a></td>
-                    
+                    <td><a href="/projects/{{ $project->id }}/work">View Work</a></td>
                 </tr>
                 @empty
                 <tr>

@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon/favicon-16x16.png">
-    <title>Bank Statements</title>
+    <title>Dubuku</title>
     @livewireStyles
 
     <!-- CSS -->
@@ -21,7 +21,7 @@
 <body>
     <div class="container mt-5 pt-2">
         <div class="text-center">
-            <img src="/static/images/bank_statements.png" class="img-fluid" alt="logo">
+            <img src="/static/images/project_management.png" class="img-fluid" alt="logo">
             <h1>Dubuku</h1>
         </div>
         <br>

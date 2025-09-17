@@ -9,11 +9,8 @@ class Comments extends Model
 {
     use HasFactory;
 
-    const STATUS_PUBLISHED = 'published';
-    const STATUS_DELETED = 'deleted';
-
     const PUBLIC_YES = 'yes';
-    const PUBLIC_NO = 'no';
+    const PUBLIC_NO  = 'no';
 
     protected $table = 'comments';
 
@@ -25,6 +22,6 @@ class Comments extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsTo(Users::class, 'created_by');
     }
 }

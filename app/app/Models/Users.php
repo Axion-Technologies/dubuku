@@ -19,4 +19,11 @@ class Users extends Authenticatable
     protected $fillable = ['comp_id', 'first_name', 'last_name', 'email', 'password', 'status', 'user_role'];
 
     protected $hidden = ['password'];
+
+    public function projects()
+    {
+        return $this->belongsToMany(Projects::class, 'user_project_mapping', 'user_id', 'project_id')
+                    ->withTimestamps();
+    }
+
 }

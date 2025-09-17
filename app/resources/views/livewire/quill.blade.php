@@ -93,6 +93,9 @@
         quill.on('text-change', function () {
             @this.set('value', quill.root.innerHTML);
         });
+        window.addEventListener('reset-quill', () => {
+            quill.setContents([]);
+        });
     });
 </script>
 

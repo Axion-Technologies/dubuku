@@ -20,10 +20,10 @@ class TasksController extends Controller
         echo view('footer.footer');
     }
 
-    public function get($task_id, Request $request)
+    public function get($project_id, $task_id, Request $request)
     {
         echo view('header.header');
-        echo view('tasks.task_details', compact('task_id'));
+        echo view('tasks.task_details', compact('project_id', 'task_id'));
         echo view('footer.footer');
     }
 
@@ -33,6 +33,20 @@ class TasksController extends Controller
         return response()->json([
             'url' => Storage::url($path)
         ]);
+    }
+
+    public function display_my_tasks()
+    {
+        echo view('header.header');
+        echo view('tasks.display_my_tasks');
+        echo view('footer.footer');
+    }
+
+    public function display_my_task_details($task_id, Request $request)
+    {
+        echo view('header.header');
+        echo view('tasks.display_my_task_details', compact('task_id'));
+        echo view('footer.footer');
     }
 
 }

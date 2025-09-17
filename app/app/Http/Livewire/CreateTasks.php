@@ -70,7 +70,7 @@ class CreateTasks extends Component
             session()->flash('success', 'Task successfully created');
             $this->reset(['heading', 'description', 'priority', 'task_type', 'project_id']);
             $this->priority = Tasks::PRIORITY_LOW;
-            $this->dispatchBrowserEvent('reset-trix');
+            $this->dispatchBrowserEvent('reset-quill');
         } 
         else {
             session()->flash('error', 'Task was not created successfully. Try again');

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dubuku - Project management application</title>
-
     <!-- CSS -->
     <link rel="stylesheet" href="/static/css/lib/bootstrap.min.css">
     <link rel="stylesheet" href="/static/fontawesome/css/all.min.css">
@@ -13,7 +12,9 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon/favicon-16x16.png">
     <!-- JS -->
-    <script src="/static/js/lib/jquery-3.4.1.min.js"></script>    
+    <script src="/static/js/lib/jquery-3.4.1.min.js"></script>   
+    <script src="/static/js/lib/vue.min.js"></script>
+    <script src="/static/js/lib/axios.min.js"></script> 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Trix editor -->
     <link rel="stylesheet" href="/static/css/lib/trix.min.css" crossorigin="anonymous">
@@ -32,6 +33,9 @@
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav ms-auto menu">
+                    <li class="nav-item me-5">
+                        <a class="nav-link text-dark" href="/issues/create"><i class="fa fa-plus logo" aria-hidden="true"></i>&nbsp Create</a>
+                    </li>
                     @if (auth()->user()->user_role === \App\Models\Users::ROLE_ADMIN)
                     <li class="nav-item me-5">
                         <a class="nav-link text-dark" href="/admin"><i class="fa fa-user-shield logo" aria-hidden="true"></i>&nbsp Admin</a>

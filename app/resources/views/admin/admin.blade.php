@@ -9,5 +9,6 @@
 <br>
 <ul class="list-unstyled">
 	<li><i class="fa fa-angle-right me-2"></i><a href="/admin/users">Users</a></li>
+	<br>
 	<li><i class="fa fa-angle-right me-2"></i><a href="/admin/projects">Projects</a></li>
 </ul>

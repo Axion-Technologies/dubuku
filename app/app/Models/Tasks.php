@@ -9,20 +9,30 @@ class Tasks extends Model
 {
     use HasFactory;
 
-    const STATUS_NEW = 'new';
-    const STATUS_INPROGRESS = 'inprogress';
-    const STATUS_ONHOLD = 'onhold';
-    const STATUS_COMPLETED = 'completed';
-    const STATUS_DELETED = 'deleted';
+    const STATUS_NEW        = 0;
+    const STATUS_TODO       = 0;
+    const STATUS_INPROGRESS = 1;
+    const STATUS_ONHOLD     = 2;
+    const STATUS_COMPLETED  = 3;
+    const STATUS_DELETED    = 4;
+    const STATUS_MERGED     = 5;
+    const STATUS_IN_REVIEW  = 6;
 
-    const PRIORITY_LOW = 0;
-    const PRIORITY_MEDIUM = 1;
-    const PRIORITY_HIGH = 2;
+    const PRIORITY_LOW      = 0;
+    const PRIORITY_MEDIUM   = 1;
+    const PRIORITY_HIGH     = 2;
     const PRIORITY_CRITICAL = 3;
 
     protected $table = 'tasks';
 
     protected $fillable = ['company_id', 'created_by', 'heading', 'description', 'status', 'project_id', 'ticket_type', 'created_on', 'priority'];
+
+    protected $appends = [
+        'priority_label',
+        'status_label',
+        'ticket_type_label',
+        'row_class',
+    ];
 
     public function getPriorityLabelAttribute()
     {
@@ -54,21 +64,22 @@ class Tasks extends Model
     public function getTicketTypeLabelAttribute()
     {
         $statuses = [
-            'bug' => 'Bug',
+            'bug'     => 'Bug',
             'feature' => 'Feature',
-            'task' => 'Task',
+            'task'    => 'Task',
+            'improvement' => 'Improvement'
         ];
 
-        return $statuses[$this->ticket_type] ?? 'Bug1';
+        return $statuses[$this->ticket_type] ?? 'Bug';
     }
 
 
     public function getRowClassAttribute()
     {
         $classes = [
-            'bug' => 'table-danger',      // Bootstrap red
+            'bug'     => 'table-danger',      // Bootstrap red
             'feature' => 'table-info',    // Bootstrap blue
-            'task' => 'table-success',    // Bootstrap green
+            'task'    => 'table-success',    // Bootstrap green
         ];
 
         return $classes[$this->ticket_type] ?? '';

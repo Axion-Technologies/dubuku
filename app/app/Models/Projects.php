@@ -12,4 +12,12 @@ class Projects extends Model
     protected $fillable = ['name', 'company_id'];
 
     protected $table = 'projects';
+
+    public function users()
+    {
+        return $this->belongsToMany(Users::class, 'user_project_mapping', 'project_id', 'user_id')
+                    ->withPivot('company_id')
+                    ->withTimestamps();
+    }
+
 }
