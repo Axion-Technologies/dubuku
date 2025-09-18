@@ -27,10 +27,10 @@
                             @endif
                         </td>
                         <td>
-                            @if ($project_task->status === 5) Critical
-                            @elseif ($project_task->status === 4) High
-                            @elseif ($project_task->status === 3) Medium
-                            @elseif ($project_task->status === 2) Low
+                            @if ($project_task->status === 5) Merged
+                            @elseif ($project_task->status === 4) Deleted
+                            @elseif ($project_task->status === 3) Resolved
+                            @elseif ($project_task->status === 2) On Hold
                             @elseif ($project_task->status === 1) In Progress
                             @else New
                             @endif

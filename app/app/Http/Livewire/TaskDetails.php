@@ -59,6 +59,8 @@ class TaskDetails extends Component
                               ->first();
 
         $this->new_owner_id = $this->task_details->owned_by;
+
+        $this->priority = $this->task_details->priority;
                                 
     }
 

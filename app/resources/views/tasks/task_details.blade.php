@@ -1,5 +1,5 @@
 <nav aria-label="breadcrumb">
-	<h2>Task Details</h2>
+	<h2>Issue Details</h2>
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="/home">Home</a></li>
 		<li class="breadcrumb-item"><a href="/projects/{{$project_id}}/work">Work</a></li>
