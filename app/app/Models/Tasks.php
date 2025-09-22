@@ -23,6 +23,11 @@ class Tasks extends Model
     const PRIORITY_HIGH     = 2;
     const PRIORITY_CRITICAL = 3;
 
+    const TASK_BUG = 'bug';
+    const TASK_FEATURE = 'feature';
+    const TASK_IMPROVEMENT = 'improvement';
+    const TASK_TASK = 'task';
+
     protected $table = 'tasks';
 
     protected $fillable = ['company_id', 'created_by', 'heading', 'description', 'status', 'project_id', 'ticket_type', 'created_on', 'priority'];

@@ -24,6 +24,7 @@
                 <option value="">-- Select Task Type --</option>
                 <option value="bug">Bug</option>
                 <option value="feature">Feature</option>
+                <option value="improvement">Improvement</option>
                 <option value="task">Task</option>
             </select>
             @error('task_type') <span class="text-danger">{{ $message }}</span> @enderror
