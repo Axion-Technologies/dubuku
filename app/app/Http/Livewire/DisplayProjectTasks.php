@@ -47,7 +47,7 @@ class DisplayProjectTasks extends Component
             Tasks::STATUS_MERGED,
         ];
 
-        $query = Tasks::select('tasks.id', 'projects.name AS project_name', 'tasks.heading', 'priority', 'status', 'tasks.created_at', 'tasks.created_by', 'tasks.owned_by')
+        $query = Tasks::select('tasks.id', 'tasks.heading', 'priority', 'status', 'tasks.created_at', 'tasks.created_by', 'tasks.owned_by', 'tasks.ticket_type', 'projects.name AS project_name')
             ->join('projects', 'projects.id', '=', 'tasks.project_id')
             ->where('tasks.project_id', $this->project_id)
             ->where('tasks.company_id', $company_id);

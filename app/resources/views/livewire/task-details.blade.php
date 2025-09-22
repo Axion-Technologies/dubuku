@@ -67,6 +67,7 @@
                     <select class="form-select" wire:model="status" wire:change="changeTaskStatus">
                         <option value="1">In Progress</option>
                         <option value="2">On Hold</option>
+                        <option value="6">In Review</option>
                         <option value="3">Completed</option>
                         <option value="4">Delete</option>
                         <option value="5">Merged</option>

@@ -15,7 +15,19 @@
                 </thead>
                 <tbody>
                     @forelse($project_tasks as $project_task)
-                    <tr>
+                    <tr 
+                        title="Issue Type: {{ ucfirst($project_task->ticket_type) }}"
+                        @if($project_task->ticket_type === 'bug') 
+                            style="background-color: #f8d7da;" 
+                        @elseif($project_task->ticket_type === 'feature') 
+                            style="background-color: #d1ecf1;" 
+                        @elseif($project_task->ticket_type === 'improvement') 
+                            style="background-color: #d4edda;" 
+                        @elseif($project_task->ticket_type === 'task') 
+                            style="background-color: #fff3cd;" 
+                        @endif
+                    >
+
                         <td><input type="checkbox"></td>
                         <td><a href="/projects/{{$project_id}}/issues/details/{{$project_task->id}}">{{ $project_task->id }} - {{ $project_task->heading }}</a></td>
                         <td>{{ $owners[$project_task->owned_by] ?? 'N/A' }}</td>
@@ -32,6 +44,7 @@
                             @elseif ($project_task->status === 3) Resolved
                             @elseif ($project_task->status === 2) On Hold
                             @elseif ($project_task->status === 1) In Progress
+                            @elseif ($project_task->status === 6) In Review
                             @else New
                             @endif
                         </td>
@@ -57,7 +70,7 @@
     <div class="col-md-2">
         <h3>Filters</h3>
 
-        <!-- 🔹 Owner filter -->
+        <!--  Owner filter -->
         <div class="mb-3">
             <label>Created By</label>
             <select wire:model="creator" class="form-control">
@@ -78,7 +91,7 @@
             </select>
         </div>
 
-        <!-- 🔹 Status filter -->
+        <!--  Status filter -->
         <div class="mb-3">
             <label>Status</label>
             <select wire:model="status" class="form-control">
@@ -90,7 +103,7 @@
             </select>
         </div>
 
-         <!-- 🔹 Priority filter -->
+         <!--  Priority filter -->
         <div class="mb-3">
             <label>Priority</label>
             <select wire:model="priority" class="form-control">
@@ -102,7 +115,7 @@
             </select>
         </div>
 
-        <!-- 🔹 Type filter -->
+        <!--  Type filter -->
         <div class="mb-3">
             <label>Type</label>
             <select wire:model="task_type" class="form-control">

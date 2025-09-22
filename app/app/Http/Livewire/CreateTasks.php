@@ -41,7 +41,7 @@ class CreateTasks extends Component
     {
         $this->validate([
             'heading'     => 'required|string',
-            'task_type'   => 'required|in:bug,feature,task',
+            'task_type'   => 'required|in:bug,feature,task,improvement',
             'project_id'  => 'required|exists:projects,id',
         ]);
 
