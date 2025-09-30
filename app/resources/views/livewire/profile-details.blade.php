@@ -38,23 +38,43 @@
                         @if (session()->has('error'))
                             <div class="alert alert-danger">{{ session('error') }}</div>
                         @endif
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label>Current Password</label>
                             <input type="password" class="form-control" wire:model.defer="current_password">
                             @error('current_password') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
+                        </div> -->
+                        <div class="mb-3" x-data="{ show: false }">
+                            <label>Password</label>
+                            <div class="input-group">
+                                <input :type="show ? 'text' : 'password'" wire:model="current_password" class="form-control">
+                                <span class="input-group-text" @click="show = !show" style="cursor: pointer;">
+                                    <i :class="show ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+                                </span>
+                            </div>
+                            @error('current_password') <span class="text-danger">{{ $message }}</span> @enderror
+                        </div> 
 
-                        <div class="mb-3">
-                            <label>New Password</label>
-                            <input type="password" class="form-control" wire:model.defer="new_password">
+                        <div class="mb-3" x-data="{ show: false }">
+                            <label>Password</label>
+                            <div class="input-group">
+                                <input :type="show ? 'text' : 'password'" wire:model="new_password" class="form-control">
+                                <span class="input-group-text" @click="show = !show" style="cursor: pointer;">
+                                    <i :class="show ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+                                </span>
+                            </div>
                             @error('new_password') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
+                        </div> 
 
-                        <div class="mb-3">
-                            <label>Confirm Password</label>
-                            <input type="password" class="form-control" wire:model.defer="confirm_password">
+                        <div class="mb-3" x-data="{ show: false }">
+                            <label>Password</label>
+                            <div class="input-group">
+                                <input :type="show ? 'text' : 'password'" wire:model="confirm_password" class="form-control">
+                                <span class="input-group-text" @click="show = !show" style="cursor: pointer;">
+                                    <i :class="show ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+                                </span>
+                            </div>
                             @error('confirm_password') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
+                        </div> 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" wire:click="clearFields">Cancel</button>

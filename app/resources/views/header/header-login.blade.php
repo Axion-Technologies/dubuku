@@ -17,6 +17,7 @@
 
     <!-- JS -->
     <script src="/static/js/lib/jquery-3.4.1.min.js"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 <body>
     <div class="container mt-5 pt-2">

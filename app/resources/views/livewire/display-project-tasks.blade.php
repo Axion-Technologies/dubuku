@@ -73,7 +73,7 @@
         <!--  Owner filter -->
         <div class="mb-3">
             <label>Created By</label>
-            <select wire:model="creator" class="form-control">
+            <select wire:model="creator" class="form-select">
                 <option value="">All</option>
                 @foreach($creators as $id => $name)
                     <option value="{{ $id }}">{{ $name }}</option>
@@ -83,7 +83,7 @@
 
         <div class="mb-3">
             <label>Assigned To</label>
-            <select wire:model="owner" class="form-control">
+            <select wire:model="owner" class="form-select">
                 <option value="">All</option>
                 @foreach($owners as $id => $name)
                     <option value="{{ $id }}">{{ $name }}</option>
@@ -94,7 +94,7 @@
         <!--  Status filter -->
         <div class="mb-3">
             <label>Status</label>
-            <select wire:model="status" class="form-control">
+            <select wire:model="status" class="form-select">
                 <option value="">All</option>
                 <option value=0>New</option>
                 <option value=1>In Progress</option>
@@ -106,9 +106,9 @@
          <!--  Priority filter -->
         <div class="mb-3">
             <label>Priority</label>
-            <select wire:model="priority" class="form-control">
+            <select wire:model="priority" class="form-select">
                 <option value="">All</option>
-                <option value=0>Low</option>
+                <option value=0 data-imagesrc="/static/images/low.png">Low</option>
                 <option value=1>Medium</option>
                 <option value=2>High</option>
                 <option value=3>Critical</option>
@@ -118,7 +118,7 @@
         <!--  Type filter -->
         <div class="mb-3">
             <label>Type</label>
-            <select wire:model="task_type" class="form-control">
+            <select wire:model="task_type" class="form-select">
                 <option value="">All</option>
                 <option value="bug">Bug</option>
                 <option value="feature">Feature</option>
@@ -127,3 +127,5 @@
         </div>
     </div>
 </div>
+
+<!-- <img src="/static/images/low.png"> -->

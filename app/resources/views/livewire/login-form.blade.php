@@ -21,11 +21,16 @@
             @error('email') <span class="text-danger">{{ $message }}</span> @enderror
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3" x-data="{ show: false }">
             <label>Password</label>
-            <input type="password" wire:model="password" class="form-control">
+            <div class="input-group">
+                <input :type="show ? 'text' : 'password'" wire:model="password" class="form-control">
+                <span class="input-group-text" @click="show = !show" style="cursor: pointer;">
+                    <i :class="show ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+                </span>
+            </div>
             @error('password') <span class="text-danger">{{ $message }}</span> @enderror
-        </div>
+        </div> 
 
         <button type="submit"
             wire:loading.attr="disabled"
@@ -33,4 +38,5 @@
             Login
         </button>
     </form> 
-</div>
+</div> 
+
