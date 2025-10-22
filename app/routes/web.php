@@ -22,14 +22,28 @@ Route::get('/signup', 'App\Http\Controllers\SignupController@index')->name('sign
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->middleware('auth');
 Route::get('/profile', 'App\Http\Controllers\HomeController@profile')->middleware('auth');
 
+Route::prefix('workspace')->group(function () {
+    Route::get('/', 'App\Http\Controllers\WorkspaceController@index')->middleware('auth');
+});
+
 
 Route::prefix('projects')->group(function () {
     Route::get('/', 'App\Http\Controllers\ProjectsController@index')->middleware('auth');
     Route::get('/{id}/work', 'App\Http\Controllers\ProjectsController@project_work')->middleware('auth');
     Route::get('/{id}/summary', 'App\Http\Controllers\ProjectsController@project_summary')->middleware('auth');
     Route::get('/{id}/reports', 'App\Http\Controllers\ProjectsController@project_report')->middleware('auth');
+    Route::get('/{id}/sprints', 'App\Http\Controllers\ProjectsController@project_sprints')->middleware('auth');
+    Route::get('/{id}/sprints/new', 'App\Http\Controllers\ProjectsController@create_project_sprint')->middleware('auth');
+    Route::get('/{id}/sprints/details/{sprintId}', 'App\Http\Controllers\ProjectsController@project_sprint_details')->middleware('auth');
     Route::get('/{id}/issues', 'App\Http\Controllers\ProjectsController@project_issues')->middleware('auth');
     Route::get('/{id}/issues/details/{issueId}', 'App\Http\Controllers\TasksController@get')->middleware('auth');
+
+    //API
+    Route::post('/sprints/create','App\Http\Controllers\SprintsApiController@create');
+    Route::get('/sprints/get/{id}', 'App\Http\Controllers\SprintsApiController@get');
+    Route::get('/{id}/sprints-details/{sprintId}' ,'App\Http\Controllers\SprintsApiController@get_details');
+    Route::post('/{id}/sprints/{sprintId}/status', 'App\Http\Controllers\SprintsApiController@change_status');
+
 });
 
 

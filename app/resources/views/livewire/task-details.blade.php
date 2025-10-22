@@ -1,5 +1,17 @@
 <div>
-    @if ($task_details && $task_details->status === \App\Models\Tasks::STATUS_NEW)
+<nav aria-label="breadcrumb">
+	<h2>{{ $task_details->heading }}</h2>
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="/workspace">My Workspace</a></li>
+		<li class="breadcrumb-item"><a href="/projects/{{$task_details->project_id}}/work">Work</a></li>
+		<li class="breadcrumb-item"><a href="/projects/{{$task_details->project_id}}/issues">Issues</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Details</li>
+	</ol>
+</nav>
+<hr class="mt-4" style="color: #cbcbcb;">
+<br>
+
+    @if ($task_details && $task_details->owned_by === null)
         <p align="right">
             <button type="button" class="btn btn-xs btn-success" wire:click="takeTask" 
             wire:loading.attr="disabled" wire:target="takeTask" id="takeTaskBtn">Take</button>
@@ -23,8 +35,13 @@
             @endif
         <div class="col-md-6">
             <div class="row mb-3">
-                <div class="col-6 col-md-4"><b>Title :</b></div>
-                <div class="col-6 col-md-8">{{ $task_details->heading }}</div>
+                <div class="col-6 col-md-4"><b>Issue ID :</b></div>
+                <div class="col-6 col-md-8">{{ $task_details->id }}</div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-6 col-md-4"><b>Project :</b></div>
+                <div class="col-6 col-md-8">{{ $task_details->project_name }}</div>
             </div>
 
             <div class="row mb-3">
@@ -55,9 +72,9 @@
             <div class="row mb-3">
                 <div class="col-6 col-md-4"><b>Status :</b></div>
                 <div class="col-6 col-md-8">
-                    @if ($task_details->status === 0 || $task_details->status === 4 || $task_details->status === 5)
-                    @if ($task_details->status === 0)
-                        New
+                    @if ( $task_details->status === 4 || $task_details->status === 5)
+                    <!-- @if ($task_details->status === 0)
+                        New -->
                     @elseif ($task_details->status === 4)
                         Deleted
                     @else
@@ -65,6 +82,9 @@
                     @endif
                     @else
                     <select class="form-select" wire:model="status" wire:change="changeTaskStatus">
+                        @if ($status === 0)
+                        <option value="0">New</option>
+                        @endif
                         <option value="1">In Progress</option>
                         <option value="2">On Hold</option>
                         <option value="6">In Review</option>

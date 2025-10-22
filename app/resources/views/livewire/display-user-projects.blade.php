@@ -4,8 +4,8 @@
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>Project Name</th>
-                    <th>Project Details</th>
+                    <th>Project</th>
+                    <th>Details</th>
                 </tr>
             </thead>
             <tbody>

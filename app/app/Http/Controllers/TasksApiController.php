@@ -13,22 +13,22 @@ class TasksApiController extends Controller
     {
         try {
             $company_id = Auth::user()->comp_id;
-        $user_id    = Auth::user()->id;
+            $user_id    = Auth::user()->id;
 
-        $my_top_tasks = Tasks::select('tasks.id', 'tasks.heading', 'tasks.priority', 'tasks.status', 'tasks.created_at', 'tasks.ticket_type', 'projects.name as project_name')
-                        ->leftJoin('projects', 'tasks.project_id', '=', 'projects.id')
-                        ->where('tasks.owned_by', $user_id)
-                        ->where('tasks.company_id', $company_id)
-                        ->orderBy('tasks.id', 'desc')
-                        ->take(5)
-                        ->get();
+            $my_top_tasks = Tasks::select('tasks.id', 'tasks.heading', 'tasks.priority', 'tasks.status', 'tasks.created_at', 'tasks.ticket_type', 'projects.name as project_name')
+                            ->leftJoin('projects', 'tasks.project_id', '=', 'projects.id')
+                            ->where('tasks.owned_by', $user_id)
+                            ->where('tasks.company_id', $company_id)
+                            ->orderBy('tasks.id', 'desc')
+                            ->take(5)
+                            ->get();
 
-        if ($my_top_tasks) {
-            return response()->json(['success' => true, 'data' => $my_top_tasks], 200);
-        }
-        else {
-            return response()->json(['success' => false, 'error' => 'No data found'], 404);
-        }
+            if ($my_top_tasks) {
+                return response()->json(['success' => true, 'data' => $my_top_tasks], 200);
+            }
+            else {
+                return response()->json(['success' => false, 'error' => 'No data found'], 404);
+            }
         }
         catch (\Throwable $th) {
             $message = $th->getMessage();

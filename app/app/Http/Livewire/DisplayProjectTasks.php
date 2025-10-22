@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Tasks;
 use App\Models\Users;
+use App\Models\Projects;
 use Illuminate\Support\Facades\Auth;
 
 class DisplayProjectTasks extends Component
@@ -15,7 +16,7 @@ class DisplayProjectTasks extends Component
     public $perPage = 200;
     protected $paginationTheme = 'bootstrap';
 
-    public $project_id;
+    public $project_id, $project_name;
 
     // Filters
     public $creator = '';
@@ -27,6 +28,7 @@ class DisplayProjectTasks extends Component
     public function mount($project_id)
     {
         $this->project_id = $project_id;
+        $this->project_name = Projects::findOrFail($project_id)->name;
     }
 
     public function updating($property)

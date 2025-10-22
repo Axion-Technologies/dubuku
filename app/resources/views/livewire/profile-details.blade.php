@@ -25,7 +25,7 @@
                 <form wire:submit.prevent="changePassword">
                     <div class="modal-header">
                         <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" wire:click="clearFields"></button>
                     </div>
 
                     <div class="modal-body">
@@ -46,7 +46,7 @@
                         <div class="mb-3" x-data="{ show: false }">
                             <label>Password</label>
                             <div class="input-group">
-                                <input :type="show ? 'text' : 'password'" wire:model="current_password" class="form-control">
+                                <input :type="show ? 'text' : 'password'" wire:model.defer="current_password" class="form-control">
                                 <span class="input-group-text" @click="show = !show" style="cursor: pointer;">
                                     <i :class="show ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
                                 </span>
@@ -57,7 +57,7 @@
                         <div class="mb-3" x-data="{ show: false }">
                             <label>Password</label>
                             <div class="input-group">
-                                <input :type="show ? 'text' : 'password'" wire:model="new_password" class="form-control">
+                                <input :type="show ? 'text' : 'password'" wire:model.defer="new_password" class="form-control">
                                 <span class="input-group-text" @click="show = !show" style="cursor: pointer;">
                                     <i :class="show ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
                                 </span>
@@ -68,7 +68,7 @@
                         <div class="mb-3" x-data="{ show: false }">
                             <label>Password</label>
                             <div class="input-group">
-                                <input :type="show ? 'text' : 'password'" wire:model="confirm_password" class="form-control">
+                                <input :type="show ? 'text' : 'password'" wire:model.defer="confirm_password" class="form-control">
                                 <span class="input-group-text" @click="show = !show" style="cursor: pointer;">
                                     <i :class="show ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
                                 </span>

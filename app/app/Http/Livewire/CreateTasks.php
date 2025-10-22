@@ -43,6 +43,7 @@ class CreateTasks extends Component
             'heading'     => 'required|string',
             'task_type'   => 'required|in:bug,feature,task,improvement',
             'project_id'  => 'required|exists:projects,id',
+            'description' => 'required'
         ]);
 
         $title       = $this->heading;

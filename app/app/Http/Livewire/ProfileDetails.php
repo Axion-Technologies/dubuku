@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Users;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class ProfileDetails extends Component
 {
@@ -32,11 +33,16 @@ class ProfileDetails extends Component
 
     public function changePassword()
     {
-        $this->validate([
-            'current_password' => 'required|string',
-            'new_password'     => 'required|string|min:6|string|min:10|regex:/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{10,30})/|different:current_password',
-            'confirm_password' => 'required|same:new_password',
-        ]);
+        try {
+            $this->validate([
+                'current_password' => 'required|string|min:10|regex:/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{10,30})/',
+                'new_password'     => 'required|string|min:10|string|min:10|regex:/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{10,30})/|different:current_password',
+                'confirm_password' => 'required|string|min:10|regex:/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{10,30})/|same:new_password',
+            ]);
+        } catch (ValidationException $error) {
+            $this->loadUserDetails();
+            throw $error; 
+        }
 
         $user             = auth()->user();
         $user_id          = $user->id;
@@ -47,6 +53,7 @@ class ProfileDetails extends Component
 
         if (!Hash::check($current_password, $password)) {
             session()->flash('error', 'Current password is incorrect.');
+            $this->loadUserDetails();
             return;
         }
 
@@ -58,13 +65,13 @@ class ProfileDetails extends Component
         
         if ($updated_password) {                     
             session()->flash('success', 'Password updated successfully.');
+            $this->clearFields();
         }
         else {
             session()->flash('error', 'Password could not be updated. Try again');
+            $this->loadUserDetails();
+            return;
         }
-
-        $this->reset();
-        $this->loadUserDetails();
     }
 
 
@@ -74,6 +81,7 @@ class ProfileDetails extends Component
         $this->new_password     = '';
         $this->confirm_password = '';
 
+        $this->resetValidation();
         $this->loadUserDetails();
     }
 

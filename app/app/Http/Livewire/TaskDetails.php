@@ -51,11 +51,12 @@ class TaskDetails extends Component
         $company_id = Auth::user()->comp_id;
 
         $this->task_details = Tasks::select('tasks.id', 'tasks.created_by', 'users.first_name', 'users.last_name',
-                                            'tasks.heading', 'tasks.description', 'tasks.priority', 'tasks.status', 
+                                            'tasks.heading', 'tasks.description', 'projects.name as project_name', 'tasks.priority', 'tasks.status', 
                                             'tasks.owned_by', 'tasks.created_at')
                               ->join('users', 'users.id', '=', 'tasks.created_by')
+                              ->join('projects', 'projects.id', '=', 'tasks.project_id')
                               ->where('tasks.id', $this->task_id)
-                              ->where('company_id', $company_id)
+                              ->where('tasks.company_id', $company_id)
                               ->first();
 
         $this->new_owner_id = $this->task_details->owned_by;
@@ -67,7 +68,7 @@ class TaskDetails extends Component
     public function newTaskComment()
     {
         $this->validate([
-            'new_comment' => 'required|string|max:1000',
+            'new_comment' => 'required|string',
         ]);
 
         $company_id = Auth::user()->comp_id;
@@ -118,19 +119,19 @@ class TaskDetails extends Component
         $user_id    = Auth::user()->id;
 
         $task = Tasks::where('id', $this->task_id)
-                    ->where('status', Tasks::STATUS_NEW)
+                    ->where('owned_by', null )
                     ->where('company_id', $company_id)
                     ->first();
 
         if (!$task) 
         {
             session()->flash('error', 'Task already assigned to someone, so it cannot be taken');
+            return;
         }
 
         $updated = Tasks::where('id', $this->task_id)
                         ->where('company_id', $company_id)
                         ->update([
-                            'status' => Tasks::STATUS_INPROGRESS,
                             'owned_by' => $user_id
                         ]);
 
@@ -160,6 +161,16 @@ class TaskDetails extends Component
 
         if ($this->status === Tasks::STATUS_NEW) {
             session()->flash('error', 'Task status cannot be changed to new.');
+            return;
+        }
+
+        $owned_by = Tasks::where('id', $this->task_id)
+                        ->where('owned_by', '=', null)
+                        ->where('company_id', $company_id)
+                        ->exists();
+
+        if ($owned_by) {
+            session()->flash('error', 'Please take the task to update the status.');
             return;
         }
 
@@ -278,11 +289,6 @@ class TaskDetails extends Component
 
         if (!$task) {
             session()->flash('error', 'Task not found.');
-            return;
-        }
-
-        if ($task->status === Tasks::STATUS_NEW) {
-            session()->flash('error', 'Task status is new. Please take the task first.');
             return;
         }
 

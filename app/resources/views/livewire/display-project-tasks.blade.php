@@ -1,3 +1,15 @@
+<nav aria-label="breadcrumb">
+	<h2>{{ $project_name }} - Issues</h2>
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="/workspace">My Workspace</a></li>
+        <li class="breadcrumb-item"><a href="/projects">Projects</a></li>
+        <li class="breadcrumb-item"><a href="/projects/{{$project_id}}/work">Work</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Issues</li>
+	</ol>
+</nav>
+<hr class="mt-4" style="color: #cbcbcb;">
+<br>
+
 <div class="row">
     <div class="col-md-9">
         <div class="table-responsive">

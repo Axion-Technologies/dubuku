@@ -38,6 +38,31 @@ class ProjectsController extends Controller
     }
 
 
+    public function project_sprints($project_id, Request $request)
+    {
+        echo view('header.header');
+        echo view('projects.display_project_sprint', compact('project_id'));
+        echo view('footer.footer');
+    }
+
+
+    public function create_project_sprint($project_id, Request $request)
+    {
+        echo view('header.header');
+        echo view('projects.create_project_sprint', compact('project_id'));
+        echo view('footer.footer');
+    }
+    
+
+
+    public function project_sprint_details($project_id, $sprint_id, Request $request)
+    {
+        echo view('header.header');
+        echo view('projects.display_project_sprint_details', compact('project_id', 'sprint_id'));
+        echo view('footer.footer');
+    }
+
+
     public function project_issues($project_id, Request $request)
     {
         echo view('header.header');
