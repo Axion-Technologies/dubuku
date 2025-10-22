@@ -1,1 +1,2 @@
-@livewire('display-project-name', ['project_id' => $project_id])
+@livewire('display-project-work', ['project_id' => $project_id])
+

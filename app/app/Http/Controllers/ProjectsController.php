@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Projects;
 
 class ProjectsController extends Controller
 {
@@ -24,24 +25,33 @@ class ProjectsController extends Controller
 
     public function project_summary($project_id, Request $request)
     {
+        $project = Projects::findOrFail($project_id);
+        $project_name = $project->name;
+
         echo view('header.header');
-        echo view('projects.display_project_summary', compact('project_id'));
+        echo view('projects.display_project_summary', compact('project_id', 'project_name'));
         echo view('footer.footer');
     }
 
 
     public function project_report($project_id, Request $request)
     {
+        $project = Projects::findOrFail($project_id);
+        $project_name = $project->name;
+
         echo view('header.header');
-        echo view('projects.display_project_report', compact('project_id'));
+        echo view('projects.display_project_report', compact('project_id', 'project_name'));
         echo view('footer.footer');
     }
 
 
     public function project_sprints($project_id, Request $request)
     {
+        $project = Projects::findOrFail($project_id);
+        $project_name = $project->name;
+
         echo view('header.header');
-        echo view('projects.display_project_sprint', compact('project_id'));
+        echo view('projects.display_project_sprint', compact('project_id', 'project_name'));
         echo view('footer.footer');
     }
 

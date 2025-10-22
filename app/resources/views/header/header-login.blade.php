@@ -22,7 +22,8 @@
 <body>
     <div class="container mt-5 pt-2">
         <div class="text-center">
-            <img src="/static/images/project_management.png" class="img-fluid" alt="logo">
-            <h1>Dubuku</h1>
+            <!-- <img src="/static/images/project_management.png" class="img-fluid" alt="logo">
+            <h1>Dubuku</h1> -->
+            <img src="/static/images/logo/dubuku-logo.png" class="img-fluid" alt="Dubuku logo" width="350">
         </div>
         <br>

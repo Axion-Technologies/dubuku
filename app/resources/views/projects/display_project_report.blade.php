@@ -1,5 +1,5 @@
 <nav aria-label="breadcrumb">
-	<h2>Project Report</h2>
+	<h2>{{ $project_name }} - Report</h2>
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="/workspace">My Workspace</a></li>
         <li class="breadcrumb-item"><a href="/projects">Projects</a></li>

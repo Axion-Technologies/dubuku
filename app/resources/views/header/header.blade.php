@@ -26,8 +26,9 @@
     <nav class="navbar navbar-expand-md bg-white navbar-light border-bottom box-shadow fixed-top">
         <div class="container">
             <a class="navbar-brand ms-2 me-auto" href="/home">
-                <img class="img-fluid" src="/static/images/favicon/favicon-32x32.png" alt="logo">&nbsp
-                Dubuku
+                <!-- <img class="img-fluid" src="/static/images/favicon/favicon-32x32.png" alt="logo">&nbsp
+                Dubuku -->
+                <img src="/static/images/logo/dubuku-logo.png" class="img-fluid" alt="Dubuku logo" width="300">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
